@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:spr="http://java.sun.com/jsf/composite/component"
+	xmlns:bttn="http://Marwan.com/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<script
+			src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<title>JSF Spring Integration</title>
+
+		<script>
+		function testApp(id){
+			return id.toUpperCase();
+		}
+		</script>
+
+
+		<style>
+.button {
+	background: green;
+	border-radius: 15px;
+	border: 15px;
+	border-color: black;
+}
+
+.button_delete {
+	background: red;
+	border-radius: 15px;
+	border: 15px;
+	border-color: black;
+}
+
+.text {
+	border-radius: 15px;
+	background: graytext;
+	color: white;
+	border: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: graytext;
+}
+
+.left {
+	float: left;
+	width: 300px;
+	text-align: left;
+	margin: 2px 10px;
+}
+
+.right {
+	float: left;
+	margin: 2px 10px;
+}
+
+div {
+	background-color: orange;
+	border-radius: 15px;
+	margin: 10px 10px;
+	padding: 10px;
+}
+</style>
+
+
+	</h:head>
+	<body style="background: gray;color : blue;">
+
+		<div ng-app="">
+
+			<p>Input something in the input box:</p>
+			<p>
+				Name : <input type="text" ng-model="name"
+					placeholder="Enter name here" />
+			</p>
+			<h1>Hello {{name}}</h1>
+
+		</div>
+
+
+		<h:form id="frm" dir="ltr">
+			<div class="left">
+
+				<spr:tempTable tempEmail="#{temp.temp.tempEmail}"
+					tempName="#{temp.temp.tempName}" tempRef="#{temp.temp.tempRef}" />
+
+				<h:commandButton actionListener="#{temp.createTempTable}"
+					immediate="false" value="Save" class="button">
+					<f:ajax execute="@form" render="frm" />
+				</h:commandButton>
+
+				<br />
+				<h:commandButton actionListener="#{temp.messageSender}" value="send"
+					class="button">
+					<f:ajax execute="@this" render="@none" />
+				</h:commandButton>
+			</div>
+			<div class="right">
+
+				<h:dataTable var="result" value="#{temp.results}">
+					<h:column>#{result.tempName}</h:column>
+					<h:column>#{result.tempEmail}</h:column>
+					<h:column>#{result.tempRef ne null ? result.tempRef.tempName:'none '}</h:column>
+					<h:column>
+						<h:commandButton action="#{temp.updateTempTable(result)}"
+							value="update" class="button"
+							onclick="alert(testApp('marwan lazo'));">
+							<f:ajax execute="@this" render=":frm"></f:ajax>
+						</h:commandButton>
+						<h:commandButton action="#{temp.deleteTempTable(result)}"
+							value="delete" class="button_delete">
+							<f:ajax execute="@this" render=":frm"></f:ajax>
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+
+
+
+			</div>
+		</h:form>
+
+
+
+	</body>
+</f:view>
+</html>
