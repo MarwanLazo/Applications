@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<composite:interface>
+	<composite:attribute name="tempName"></composite:attribute>
+	<composite:attribute name="tempEmail"></composite:attribute>
+	<composite:attribute name="tempRef"></composite:attribute>
+</composite:interface>
+<composite:implementation>
+
+	
+				Name :
+				<h:inputText value="#{cc.attrs.tempName}" id="name" class="text">
+		<f:ajax execute="@this" render="msgs" />
+	</h:inputText>
+
+	<br /> Email:
+				<h:inputText value="#{cc.attrs.tempEmail}" id="email" class="text" />
+	<br /> Temp Ref:
+				<h:selectOneMenu value="#{cc.attrs.tempRef}" class="text"
+		converter="#{converterController.tempTableConverter}">
+		<f:selectItem itemLabel="#{''}" itemValue="#{null}" />
+		<f:selectItems value="#{temp.results}" var="res"
+			itemLabel="#{res.tempName}" itemValue="#{res}" />
+		<f:ajax execute="@this" />
+	</h:selectOneMenu>
+
+
+	<h:messages id="msgs" />
+
+</composite:implementation>
+</html>
