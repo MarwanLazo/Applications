@@ -68,7 +68,7 @@ public class TempController implements Serializable {
 	}
 
 	public void messageSender() {
-		invoiceQueueSender.sendMesage("Test Is DONE!! APP");
+		invoiceQueueSender.sendMesage("Test Is DONE!! APPmm");
 	}
 
 	// ------------- Setters & getters -------------
