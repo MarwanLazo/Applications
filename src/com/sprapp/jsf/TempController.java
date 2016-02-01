@@ -12,7 +12,10 @@ import com.sprapp.dto.TempTableDTO;
 import com.sprapp.interceptor.TestEJB;
 import com.sprapp.jms.InvoiceQueueSender;
 import com.sprapp.service.TempTableService;
-
+/**
+ * @author Marwan
+ * 
+ */
 @ManagedBean(name = "temp")
 @ViewScoped
 public class TempController implements Serializable {
