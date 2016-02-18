@@ -14,7 +14,8 @@
 
 	
 				Name :
-				<h:inputText value="#{cc.attrs.tempName}" id="name" class="text">
+				<h:inputText value="#{cc.attrs.tempName}" id="name" class="text"
+		onchange="testInputLenght('frm:compsite:name', 'Name')">
 		<f:ajax execute="@this" render="msgs" />
 	</h:inputText>
 
