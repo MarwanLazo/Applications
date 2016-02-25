@@ -13,7 +13,12 @@
 				value="org.hibernate.engine.transaction.jta.platform.internal.WeblogicJtaPlatform" />
 			<property name="hibernate.transaction.manager_lookup_class"
 				value="org.hibernate.transaction.WebSphereExtendedJTATransactionLookup" />
-
+			<property name="hibernate.search.default.directory_provider"
+				value="filesystem" />
+			<property name="hibernate.search.default.indexBase" value="D:/eclps/workspace/temps-ejb/search" />
+			<property name="hibernate.search.lucene_version" value="LUCENE_35" />
+			<property name="hibernate.search.​default.​exclusive_index_use" value="false" />
+   
 		</properties>
 	</persistence-unit>
 </persistence>

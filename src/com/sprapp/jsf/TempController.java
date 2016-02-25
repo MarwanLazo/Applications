@@ -11,7 +11,9 @@ import javax.faces.event.ActionEvent;
 import com.sprapp.dto.TempTableDTO;
 import com.sprapp.interceptor.TestEJB;
 import com.sprapp.jms.InvoiceQueueSender;
+import com.sprapp.service.CallRestWS;
 import com.sprapp.service.TempTableService;
+
 /**
  * @author Marwan
  * 
@@ -25,6 +27,9 @@ public class TempController implements Serializable {
 	private TempTableDTO			temp;
 	@ManagedProperty("#{tempTableService}")
 	private TempTableService		tempTableService;
+
+	@ManagedProperty("#{callRestWS}")
+	private CallRestWS				callRestWS;
 
 	@ManagedProperty("#{invoiceQueueSender}")
 	private InvoiceQueueSender		invoiceQueueSender;
@@ -68,6 +73,9 @@ public class TempController implements Serializable {
 
 	public void messageSender(ActionEvent event) {
 		invoiceQueueSender.sendMesage("Test Is DONE!!");
+		callRestWS.createUser(temp);
+		results = tempTableService.findAllTempTable();
+		temp = new TempTableDTO();
 	}
 
 	public void messageSender() {
@@ -93,6 +101,10 @@ public class TempController implements Serializable {
 
 	public void setEjb(TestEJB ejb) {
 		this.ejb = ejb;
+	}
+
+	public void setCallRestWS(CallRestWS callRestWS) {
+		this.callRestWS = callRestWS;
 	}
 
 }

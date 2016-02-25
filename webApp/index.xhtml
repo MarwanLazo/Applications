@@ -10,9 +10,10 @@
 	<h:head>
 		<title id="title">JSF Spring Integration</title>
 
-		<script type="text/javascript" src="./resources/js/mainJS.js">
+		<script type="text/javascript"
+			src="http://code.jquery.com/jquery-latest.min.js" />
+		<script type="text/javascript" src="./resources/js/mainJS.js" />
 
-		</script>
 
 
 		<link rel="stylesheet" type="text/css"
@@ -20,7 +21,7 @@
 
 	</h:head>
 	<body style="background: gray; color: blue;">
-	
+
 		<h:form id="frm" dir="ltr">
 			<div class="left">
 
@@ -28,14 +29,14 @@
 					tempName="#{temp.temp.tempName}" tempRef="#{temp.temp.tempRef}" />
 
 				<h:commandButton actionListener="#{temp.createTempTable}"
-					immediate="false" value="Save" class="button">
+					value="Save" class="button" onblur="consumeWS();">
 					<f:ajax execute="@form" render="frm" />
 				</h:commandButton>
 
 				<br />
 				<h:commandButton actionListener="#{temp.messageSender}" value="send"
 					class="button">
-					<f:ajax execute="@this" render="@none" />
+					<f:ajax execute="@form" render="frm" />
 				</h:commandButton>
 			</div>
 			<div class="right">
@@ -50,7 +51,9 @@
 							<f:ajax execute="@this" render=":frm"></f:ajax>
 						</h:commandButton>
 						<h:commandButton action="#{temp.deleteTempTable(result)}"
-							value="delete" class="button_delete" onclick="return  deleteConfirmation('#{result.tempName}')">
+							value="delete" class="button_delete"
+							onclick="return  deleteConfirmation('#{result.tempName}');"
+							onblur="consumeWS();">
 							<f:ajax execute="@this" render=":frm"></f:ajax>
 						</h:commandButton>
 					</h:column>
@@ -62,12 +65,25 @@
 		</h:form>
 
 		<button value="test" onclick="setUserName('title');">test</button>
-<h1 id="data" onclick="showDate('data')">Show Date</h1>
+		<button value="testWS" onclick="consumeWS();">TESTWS</button>
+		<button onclick="addStuff(myDog.bark());addStuff(myCat.meow);">Add Element</button>
+		<button
+			onclick="annoyThePet();">anything</button>
+
+		<h1 id="data" onclick="showDate('data')">Show Date</h1>
+	
 		<div style="border-radius: 15px;">
 			<img src="resources/images/Desert.jpg" width="150" height="150"
 				id="img" onclick="changeImage('img')" />
 		</div>
 
+		<div id="divResults"></div>
+
+
+		<div>
+			<!-- <iframe width="520" height="345"
+				src="https://www.youtube.com/embed/e_8dY1g6RSQ"/> -->
+		</div>
 	</body>
 </f:view>
 </html>

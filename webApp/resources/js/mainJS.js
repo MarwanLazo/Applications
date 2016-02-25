@@ -82,7 +82,78 @@ function showDate(id) {
 
 function deleteConfirmation(name) {
 	var msg = "Are you sure want to delete TempTable named :".concat(name);
-	return confirm(msg);
+	var rs = confirm(msg);
+	return rs;
+}
+
+// ---------- consume WS
+function consumeWS() {
+	$.ajax({
+		type : 'Get',
+		url : 'http://localhost:7007/sprTest/rest/employees',
+		success : function(data) {
+			var html = '<table border="1" cellspacing="0" cellpadding="10" 	>';
+			html += '<tr><th> Name </th><th> Email </th><th> Email </th></tr>'
+			for (var i = 0; i < data.length; i++) {
+				html += '<tr><td>' + data[i]['tempName'] + '</td><td>'
+						+ data[i]['tempEmail'] + '</td>';
+				if (data[i]['tempRef'] != null) {
+					html += "<td>" + data[i]['tempRef']['tempName'] + "</td>";
+				} else {
+					html += '<td>No Ref</td>'
+				}
+
+				console.log("----->>>------------------------>>>".concat(i));
+				html += '</tr>'
+			}
+			html += '</table>'
+			$("#divResults").replaceWith(
+					$("<div id='divResults' >" + html + "</div>"));
+		}
+	});
+
+}
+var x = 0;
+function addStuff() {
+	var words = [ 'one', 'two', 'three' ];
+
+	var html = '<table border="1" cellspacing="0" cellpadding="0" 	>';
+	html += '<tr><th> Numbers </th></tr>'
+	$.each(words, function(i, word) {
+		html += '<tr><td>' + word + '</td></tr>';
+	});
+
+	html += '</table>';
+
+	$("#divResults").replaceWith($("<div id='divResults' >" + html + "</div>"));
+	x++;
+	console.log(x);
+}
+
+var anyThing = {
+	color : 'Black',
+	lagsCount : 4,
+	comunicate : function(cont) {
+		for (var int = 0; int < cont; int++) {
+			alert("Woof".toUpperCase());
+		}
+	}
+};
+
+var myDog = {
+	bark : function() {
+		alert('Woof!');
+	}
+};
+
+var myCat = {
+	meow : function() {
+		alert('I am a lazy cat. I will not meow for you.');
+	}
+};
+
+function annoyThePet(petFunction) {
+	petFunction();
 }
 
 // end
