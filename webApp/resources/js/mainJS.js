@@ -152,8 +152,22 @@ var myCat = {
 	}
 };
 
-function annoyThePet(petFunction) {
-	petFunction();
+function annoyThePet(name) {
+	var num = 15;
+	console.log(String.replace(num, /5/, '2'));
+}
+
+function partOfDay() {
+	var hour = new Date().getHours();
+
+	if (hour <= 12) {
+		return 'morning';
+	} else if (hour <= 5) {
+		return 'afternoon';
+	} else {
+		return 'evening';
+	}
 }
 
 // end
+

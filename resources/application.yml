@@ -1,0 +1,5 @@
+#zuul:
+#  routes:
+#    foos:
+#      path: /rest/**
+#      url: http://localhost:7007/sprTest/rest

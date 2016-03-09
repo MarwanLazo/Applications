@@ -15,6 +15,8 @@ import com.sprapp.entity.TempTableEB;
 @Stateless(mappedName = "java/testEJB")
 public class TestEJBImpl implements TestEJB {
 
+	private static final long serialVersionUID = 1L;
+
 	@SuppressWarnings("unchecked")
 	public List<TempTableEB> getName(String name, EntityManager em) throws InterruptedException {
 		FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
@@ -30,5 +32,4 @@ public class TestEJBImpl implements TestEJB {
 		System.out.println(message);
 	}
 
-	
 }
