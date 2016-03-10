@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class LoggingAcpect {
 
-	@After("execution(public * com.sprapp.service.TempTableServiceImpl.*(..))")
+	@After("within(com.sprapp..*)")
 	public void logAfter(JoinPoint joinPoint) {
 
 		System.out.println(" @After is running!");
@@ -17,7 +17,7 @@ public class LoggingAcpect {
 
 	}
 
-	@Before("execution(public * com.sprapp.service.TempTableServiceImpl.*(..))")
+	@Before("within(com.sprapp..*)")
 	public void logBefore(JoinPoint joinPoint) {
 
 		System.out.println("@Before  is running!");
