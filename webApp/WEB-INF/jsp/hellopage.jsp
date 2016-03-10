@@ -12,7 +12,7 @@
 		<form action="delete.html" method="get">
 			<c:forEach var="item" items="${message}">
 				<c:out
-					value="${item.tempName}  --## ${model.name} -- ${model.email}##--  ${item.tempEmail}" />
+					value="${item.tempName}  --##--  ${item.tempEmail}" />
 				<button name="item" value="${item.tempName}">delete</button>
 				<p>
 			</c:forEach>

@@ -1,12 +1,8 @@
 package com.sprapp.controller;
 
 import java.util.List;
-import java.util.Properties;
 
 import javax.inject.Inject;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +20,8 @@ import com.sprapp.springdata.TempTableRepositry;
 @RequestMapping(value = "/")
 public class HelloWorldController {
 
-//	@Inject
-//	private ModelTest			model;
+	// @Inject
+	// private ModelTest model;
 
 	@PersistenceContext(unitName = "sprTest")
 	private EntityManager		em;
@@ -36,36 +32,6 @@ public class HelloWorldController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/hello")
 	public ModelAndView helloWorld() {
-		/*
-		 * Connection conn = null; PreparedStatement prepared = null; ResultSet
-		 * rSet = null; try { conn = dataSource.getConnection(); prepared =
-		 * conn.prepareStatement(QUERY); rSet = prepared.executeQuery(); if
-		 * (rSet.next()) { model.setName(rSet.getString("TEMP_NAME"));
-		 * model.setEmail(rSet.getString("TEMP_EMAIL")); } } catch (SQLException
-		 * e) { e.printStackTrace(); } finally { try { conn.close();
-		 * prepared.close(); rSet.close(); } catch (SQLException e) {
-		 * e.printStackTrace(); } }
-		 */
-
-		// Session session = model.getSession();
-
-		Properties env = new Properties();
-		env.put(Context.SECURITY_PRINCIPAL, "weblogic");
-		env.put(Context.SECURITY_CREDENTIALS, "weblogic1");
-		env.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
-		env.put(Context.PROVIDER_URL, "t3://localhost:7007");
-
-		try {
-			InitialContext ctx = new InitialContext(env);
-			System.out.println("---- connection ----->>>> "+ctx.lookup("ConnectionFactory_TEST").getClass().getCanonicalName());
-			System.out.println("-----queue---->>>> "+ctx.lookup("queue_TEST").getClass().getCanonicalName());
-//			JMSXAConnectionFactory
-//			DestinationImpl
-			
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-
 		List<TempTableEB> temp = em.createQuery("SELECT t FROM TempTableEB t order by t.tempName asc ").getResultList();
 		ModelAndView view = new ModelAndView("hellopage", "message", temp);
 		view.addObject("model", "");

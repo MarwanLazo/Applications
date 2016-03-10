@@ -149,4 +149,12 @@
 		<property name="messageListener" ref="invoiceListener" />
 	</bean>
 
+	
+	
+	 <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*" />
+            <bean class="com.sprapp.interceptor.SpringInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans> 
