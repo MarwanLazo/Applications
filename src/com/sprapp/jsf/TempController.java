@@ -26,9 +26,6 @@ public class TempController implements Serializable {
 
 	private Iterable<TempTableDTO>	results;
 	private TempTableDTO			temp;
-	@ManagedProperty("#{consumption}")
-	private Consumption				consumption;
-
 	@ManagedProperty("#{tempTableService}")
 	private TempTableService		tempTableService;
 
@@ -43,19 +40,17 @@ public class TempController implements Serializable {
 
 	@PostConstruct
 	private void init() {
-//		try {
-//			System.err.println(consumption);
-//			System.err.println(consumption.findById());
-			
-//			System.out.println(tempTableService.instanceTestEJB().getName("Marwan", tempTableService.getEm()));
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+		try {
+
+			System.out.println(tempTableService.instanceTestEJB().getName("Marwan", tempTableService.getEm()));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		results = tempTableService.findAllTempTable();
 		temp = new TempTableDTO();
-//		for (TempTableDTO tempTableDTO : results) {
-//			System.out.println(tempTableDTO.getTempRef());
-//		}
+		// for (TempTableDTO tempTableDTO : results) {
+		// System.out.println(tempTableDTO.getTempRef());
+		// }
 	}
 
 	public Iterable<TempTableDTO> getResults() {
@@ -112,10 +107,6 @@ public class TempController implements Serializable {
 
 	public void setCallRestWS(CallRestWS callRestWS) {
 		this.callRestWS = callRestWS;
-	}
-
-	public void setConsumption(Consumption consumption) {
-		this.consumption = consumption;
 	}
 
 }
