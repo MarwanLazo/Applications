@@ -2,13 +2,30 @@ package com.sprapp.dto;
 
 import java.io.Serializable;
 
+import com.sprapp.oval.UpperCase;
+import com.sprapp.oval.ValidID;
+
+import net.sf.oval.constraint.MatchPattern;
+import net.sf.oval.constraint.NotBlank;
+
 public class TempTableDTO implements Serializable {
 
 	private static final long	serialVersionUID	= 1L;
+	private static final String	EMAIL_PATTERN		= "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
+	@NotBlank
+	@net.sf.oval.constraint.NotNull(message = "Name cannot be null")
+	@UpperCase
+	@ValidID
 	private String				tempName;
+
+	@net.sf.oval.constraint.NotNull
+	@MatchPattern(pattern = EMAIL_PATTERN, message = "invalid email Oval")	
+//	@Pattern(regexp = EMAIL_PATTERN, message = "invalid email JavaX")
 	private String				tempEmail;
+	
+	
 	private TempTableDTO		tempRef;
-	private String				tempNameUnsaved;
 
 	public TempTableDTO() {
 	}
@@ -46,14 +63,6 @@ public class TempTableDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "[" + tempName + ":" + tempEmail + "]";
-	}
-
-	public String getTempNameUnsaved() {
-		return tempNameUnsaved;
-	}
-
-	public void setTempNameUnsaved(String tempNameUnsaved) {
-		this.tempNameUnsaved = tempNameUnsaved;
 	}
 
 	@Override

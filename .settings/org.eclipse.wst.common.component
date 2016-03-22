@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/" source-path="/webApp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="sprTest"/>
         <property name="java-output-path" value="/sprTest/build/classes"/>
     </wb-module>

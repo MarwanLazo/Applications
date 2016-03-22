@@ -61,6 +61,24 @@
 			<artifactId>spring-tx</artifactId>
 			<version>4.2.2.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -160,6 +178,20 @@
 			<artifactId>cglib</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+
+		<!-- oval -->
+	<!-- 	<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>net.sf.oval</artifactId>
+			<version>0.8</version>
+		</dependency> -->
+
+		<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>oval</artifactId>
+			<version>1.85</version>
+		</dependency>
+
 
 
 	</dependencies>

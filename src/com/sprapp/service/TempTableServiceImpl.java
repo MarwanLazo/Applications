@@ -16,29 +16,37 @@ import com.sprapp.interceptor.TestEJB;
 import com.sprapp.mapping.FactoryMapper;
 import com.sprapp.springdata.TempTableRepositry;
 
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
+import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
+
 @Service(value = "tempTableService")
 public class TempTableServiceImpl implements TempTableService {
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long					serialVersionUID	= 1L;
 
 	@Resource
-	private TempTableRepositry	repositry;
+	private TempTableRepositry					repositry;
 
 	@Resource
-	private FactoryMapper<?, ?>	factoryMapper;
-	
+	private FactoryMapper<?, ?>					factoryMapper;
+
 	@PersistenceContext
-	private EntityManager em;
+	private transient EntityManager				em;
 
 	@EJB(mappedName = "java.testEJB#com.sprapp.interceptor.TestEJB")
-	private TestEJB				testEJB;
+	private TestEJB								testEJB;
+
+	private AnnotationsConfigurer				annotationsConfigurer;
+	private BeanValidationAnnotationsConfigurer	beanValidationAnnotationsConfigurer;
+	private Validator							validator;
 
 	@PostConstruct
 	private void init() {
-		
+
 	}
 
-  
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TempTableDTO> findAllTempTable() {
@@ -47,18 +55,19 @@ public class TempTableServiceImpl implements TempTableService {
 
 	@Override
 	public TempTableDTO createTempTable(TempTableDTO dto) {
-		TempTableEB tempEB = (TempTableEB) factoryMapper.mapAsObject(dto, TempTableEB.class);
-		return (TempTableDTO) factoryMapper.mapAsObject(repositry.save(tempEB), dto.getClass());
+		return updateTempTable(dto);
 	}
 
 	@Override
 	public TempTableDTO updateTempTable(TempTableDTO dto) {
+		validate(dto);
 		TempTableEB tempEB = (TempTableEB) factoryMapper.mapAsObject(dto, TempTableEB.class);
 		return (TempTableDTO) factoryMapper.mapAsObject(repositry.save(tempEB), dto.getClass());
 	}
 
 	@Override
 	public boolean deleteTempTable(TempTableDTO dto) {
+		validate(dto);
 		TempTableEB tempEB = (TempTableEB) factoryMapper.mapAsObject(dto, TempTableEB.class);
 		try {
 			repositry.delete(tempEB);
@@ -81,6 +90,18 @@ public class TempTableServiceImpl implements TempTableService {
 
 	public EntityManager getEm() {
 		return em;
+	}
+
+	private void validate(Object object) {
+
+		annotationsConfigurer = new AnnotationsConfigurer();
+		beanValidationAnnotationsConfigurer = new BeanValidationAnnotationsConfigurer();
+		validator = new Validator(annotationsConfigurer, beanValidationAnnotationsConfigurer);
+
+		List<ConstraintViolation> errors = validator.validate(object);
+		if (errors.size() != 0) {
+			throw new RuntimeException();
+		}
 	}
 
 }

@@ -30,6 +30,15 @@ public class HelloWorldController {
 	private TempTableRepositry	repositry;
 
 	@SuppressWarnings("unchecked")
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		List<TempTableEB> temp = em.createQuery("SELECT t FROM TempTableEB t order by t.tempName asc ").getResultList();
+		ModelAndView view = new ModelAndView("hellopage", "message", temp);
+		view.addObject("model", "");
+		return view;
+	}
+	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/hello")
 	public ModelAndView helloWorld() {
 		List<TempTableEB> temp = em.createQuery("SELECT t FROM TempTableEB t order by t.tempName asc ").getResultList();

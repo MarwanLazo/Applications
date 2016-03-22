@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
-import com.sprapp.controller.Consumption;
 import com.sprapp.dto.TempTableDTO;
 import com.sprapp.interceptor.TestEJB;
 import com.sprapp.jms.InvoiceQueueSender;

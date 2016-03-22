@@ -36,8 +36,6 @@
 	<context:component-scan base-package="com.sprapp.service" />
 
 
-
-
 	<bean class="com.sprapp.aop.LoggingAcpect" id="logg" /> 
 	<bean class="com.sprapp.ws.soap.HelloWorldWS" id="ws" />
 
@@ -157,4 +155,6 @@
             <bean class="com.sprapp.interceptor.SpringInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+    
+	  <!-- <import resource="webSecurityConfig.xml" />  -->
 </beans> 
