@@ -34,6 +34,7 @@
 	<context:component-scan base-package="com.sprapp.jsf" />
 	<context:component-scan base-package="com.sprapp.mapping" />
 	<context:component-scan base-package="com.sprapp.service" />
+	<context:component-scan base-package="com.sprapp.oval" />
 
 
 	<bean class="com.sprapp.aop.LoggingAcpect" id="logg" /> 

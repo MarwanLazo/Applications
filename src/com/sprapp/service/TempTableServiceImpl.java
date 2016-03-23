@@ -100,7 +100,9 @@ public class TempTableServiceImpl implements TempTableService {
 
 		List<ConstraintViolation> errors = validator.validate(object);
 		if (errors.size() != 0) {
-			throw new RuntimeException();
+			for (ConstraintViolation constraintViolation : errors) {
+				System.err.println(constraintViolation.getMessage());
+			}
 		}
 	}
 
