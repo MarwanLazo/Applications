@@ -20,7 +20,7 @@ public class TestEJBImpl implements TestEJB {
 	@SuppressWarnings("unchecked")
 	public List<TempTableEB> getName(String name, EntityManager em) throws InterruptedException {
 		FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
-		fullTextEntityManager.createIndexer().startAndWait();
+		fullTextEntityManager.createIndexer(TempTableEB.class).startAndWait();
 		QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(TempTableEB.class).get();
 		org.apache.lucene.search.Query query = qb.keyword().onFields("tempName").matching(name).createQuery();
 		javax.persistence.Query persistenceQuery = fullTextEntityManager.createFullTextQuery(query, TempTableEB.class);

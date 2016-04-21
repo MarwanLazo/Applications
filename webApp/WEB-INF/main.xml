@@ -22,7 +22,7 @@
 	</bean>
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="TempDataSource" />
+		<property name="jndiName" value="TEMP_DATA_SOURCE" />
 	</bean>
 
 	<bean id="sessionFactory"

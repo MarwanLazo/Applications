@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
@@ -17,6 +18,7 @@ import org.hibernate.search.annotations.Store;
 @Entity
 @Table(name = "temp_table")
 @Indexed
+@Audited
 //@Cacheable 
 //@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 public class TempTableEB implements Serializable {

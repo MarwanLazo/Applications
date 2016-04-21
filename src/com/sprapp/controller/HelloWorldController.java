@@ -31,12 +31,15 @@ public class HelloWorldController {
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/login")
-	public ModelAndView login() {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
 		List<TempTableEB> temp = em.createQuery("SELECT t FROM TempTableEB t order by t.tempName asc ").getResultList();
 		ModelAndView view = new ModelAndView("hellopage", "message", temp);
+//		System.out.println(request.getUserPrincipal().getName());
 		view.addObject("model", "");
 		return view;
 	}
+	
+
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/hello")
@@ -44,6 +47,7 @@ public class HelloWorldController {
 		List<TempTableEB> temp = em.createQuery("SELECT t FROM TempTableEB t order by t.tempName asc ").getResultList();
 		ModelAndView view = new ModelAndView("hellopage", "message", temp);
 		view.addObject("model", "");
+	
 		return view;
 	}
 
@@ -57,6 +61,7 @@ public class HelloWorldController {
 		em.flush();
 		String message = "HELLO TEST";
 		ModelAndView view = new ModelAndView("result", "message", message);
+//		System.out.println(request.getUserPrincipal().getName());
 		return view;
 	}
 

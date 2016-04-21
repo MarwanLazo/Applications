@@ -48,7 +48,7 @@
 	</bean>
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="TempDataSource" />
+		<property name="jndiName" value="TEMP_DATA_SOURCE" />
 	</bean>
 
 	<!-- <bean id="myComponent" class="org.springframework.ejb.access.LocalStatelessSessionProxyFactoryBean"> 
@@ -80,9 +80,9 @@
 	</bean>
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-		<property name="database" value="ORACLE" />
+		<property name="database" value="MYSQL" />
 		<property name="showSql" value="true" />
-		<property name="databasePlatform" value="org.hibernate.dialect.OracleDialect" />
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
 	</bean>
 	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
 	<bean id="transactionMngr" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -157,5 +157,5 @@
         </mvc:interceptor>
     </mvc:interceptors>
     
-	  <!-- <import resource="webSecurityConfig.xml" />  -->
+	  <!-- <import resource="spring-security.xml" />  -->
 </beans> 

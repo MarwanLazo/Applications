@@ -8,6 +8,7 @@
 
 	<properties>
 		<hibernate.version>4.3.11.Final</hibernate.version>
+		<Spring.version>4.2.5.RELEASE</Spring.version>
 		<aspectj.version>1.7.4</aspectj.version>
 	</properties>
 
@@ -25,9 +26,24 @@
 		</dependency>
 
 
+		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.0.4.RELEASE</version>
+		</dependency>
 
-		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-zuul</artifactId> 
-			<version>1.0.6.RELEASE</version> </dependency> -->
+		<!-- end spring security -->
 
 		<dependency>
 			<groupId>javax.faces</groupId>
@@ -35,54 +51,40 @@
 			<version>2.1</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<version>1.2</version>
 		</dependency>
-
+		<!-- spring core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.2.2.RELEASE</version>
+			<version>${Spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.2.2.RELEASE</version>
+			<version>${Spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.2.2.RELEASE</version>
+			<version>${Spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.2.2.RELEASE</version>
+			<version>${Spring.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>4.0.3.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.0.3.RELEASE</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>4.0.3.RELEASE</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.9.0.RELEASE</version>
+			<version>1.9.4.RELEASE</version>
 		</dependency>
 		<!-- REST WS -->
 		<dependency>
@@ -116,8 +118,15 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
-
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-analyzers</artifactId>
@@ -146,13 +155,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.2.2.RELEASE</version>
+			<version>${Spring.version}</version>
 		</dependency>
 		<!-- JMS -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
-			<version>4.2.2.RELEASE</version>
+			<version>${Spring.version}</version>
 		</dependency>
 		<!-- logs -->
 		<dependency>
@@ -180,11 +189,8 @@
 		</dependency>
 
 		<!-- oval -->
-	<!-- 	<dependency>
-			<groupId>net.sf.oval</groupId>
-			<artifactId>net.sf.oval</artifactId>
-			<version>0.8</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>net.sf.oval</groupId> <artifactId>net.sf.oval</artifactId> 
+			<version>0.8</version> </dependency> -->
 
 		<dependency>
 			<groupId>net.sf.oval</groupId>
