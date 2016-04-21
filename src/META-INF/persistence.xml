@@ -17,15 +17,28 @@
 				value="filesystem" />
 			<property name="hibernate.search.default.indexBase" value="D:/eclps/workspace/temps-ejb/search" />
 			<property name="hibernate.search.lucene_version" value="LUCENE_35" />
-			
-			
-			<property name="org.hibernate.envers.audit_table_suffix" value="_AUD" />
-			<property name="org.hibernate.envers.revision_field_name" value="REV" />
-			<property name="org.hibernate.envers.revision_type_field_name" value="REVTYPE" />
-			<property name="org.hibernate.envers.audit_strategy" value="org.hibernate.envers.strategy.DefaultAuditStrategy" />
-			<property name="org.hibernate.envers.track_entities_changed_in_revision" value="true" />
-			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> --> 
-			
+
+
+			<property name="org.hibernate.envers.audit_table_suffix"
+				value="_AUD" />
+			<property name="org.hibernate.envers.revision_field_name"
+				value="REV" />
+			<property name="org.hibernate.envers.revision_type_field_name"
+				value="REVTYPE" />
+			<property name="org.hibernate.envers.audit_strategy"
+				value="org.hibernate.envers.strategy.DefaultAuditStrategy" />
+			<property name="org.hibernate.envers.track_entities_changed_in_revision"
+				value="true" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
+
+			<property name="connection.autoReconnect" value="true" />
+			<property name="connection.autoReconnectForPools" value="true" />
+			<property name="hibernate.is-connection-validation-required"
+				value="true" />
+
+			<property name="hibernate.listeners.envers.autoRegister"
+				value="false" />
+
 		</properties>
 	</persistence-unit>
 </persistence>
