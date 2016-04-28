@@ -14,7 +14,7 @@
 			style="color: white; border-bottom: 2px;">back</a>
 	</center>
 	<%
-		response.sendRedirect("http://localhost:7007/sprTest/hello.html");
+		response.sendRedirect("http://localhost:7007/sprTest/rest/hello.html");
 	%>
 </body>
 </html>

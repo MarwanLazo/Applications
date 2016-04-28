@@ -16,6 +16,7 @@ import com.sprapp.audit.envers.listiner.SprEnversPostUpdateEventListenerImpl;
 import com.sprapp.audit.envers.listiner.SprEnversPreCollectionRemoveEventListenerImpl;
 import com.sprapp.audit.envers.listiner.SprEnversPreCollectionUpdateEventListenerImpl;
 
+
 public class EnverseCustomIntegrator extends EnversIntegrator {
 
 	public static final String	AUTO_REGISTER	= "hibernate.listeners.envers.autoRegister";
