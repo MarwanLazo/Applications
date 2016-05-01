@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
 import com.sprapp.dto.TempTableDTO;
+import com.sprapp.general.Status;
 import com.sprapp.interceptor.TestEJB;
 import com.sprapp.jms.InvoiceQueueSender;
 import com.sprapp.service.CallRestWS;
@@ -21,26 +22,26 @@ import com.sprapp.service.TempTableService;
 @ManagedBean(name = "temp")
 @ViewScoped
 public class TempController implements Serializable {
-	private static final long		serialVersionUID	= 1L;
-
-	private Iterable<TempTableDTO>	results;
-	private TempTableDTO			temp;
+	private static final long	   serialVersionUID	= 1L;
+	
+	private Iterable<TempTableDTO> results;
+	private TempTableDTO		   temp;
 	@ManagedProperty("#{tempTableService}")
-	private TempTableService		tempTableService;
-
+	private TempTableService	   tempTableService;
+	
 	@ManagedProperty("#{callRestWS}")
-	private CallRestWS				callRestWS;
-
+	private CallRestWS			   callRestWS;
+	
 	@ManagedProperty("#{invoiceQueueSender}")
-	private InvoiceQueueSender		invoiceQueueSender;
-
+	private InvoiceQueueSender	   invoiceQueueSender;
+	
 	@ManagedProperty("#{myComponent}")
-	private TestEJB					ejb;
-
+	private TestEJB				   ejb;
+	
 	@PostConstruct
-	private void init() {
+	private void init () {
 		try {
-
+			
 			System.out.println(tempTableService.instanceTestEJB().getName("Marwan", tempTableService.getEm()));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -51,61 +52,71 @@ public class TempController implements Serializable {
 		// System.out.println(tempTableDTO.getTempRef());
 		// }
 	}
-
-	public Iterable<TempTableDTO> getResults() {
+	
+	public Iterable<TempTableDTO> getResults () {
 		return results;
 	}
-
-	public void createTempTable(ActionEvent event) {
+	
+	public void createTempTable (ActionEvent event) {
 		temp.setTempName(temp.getTempName().replace(" ", ""));
+		if (temp.getStatus() == null || temp.getStatus().equals(Status.ACTIVE)) {
+			temp.setStatus(Status.IN_ACTIVE);
+		} else {
+			temp.setStatus(Status.ACTIVE);
+		}
 		tempTableService.createTempTable(temp);
 		results = tempTableService.findAllTempTable();
 		temp = new TempTableDTO();
 	}
-
-	public void deleteTempTable(TempTableDTO temp) {
+	
+	public void deleteTempTable (TempTableDTO temp) {
 		tempTableService.deleteTempTable(temp);
 		results = tempTableService.findAllTempTable();
 	}
-
-	public void updateTempTable(TempTableDTO temp) {
+	
+	public void updateTempTable (TempTableDTO temp) {
 		this.temp = temp;
 	}
-
-	public void messageSender(ActionEvent event) {
+	
+	public void messageSender (ActionEvent event) {
 		invoiceQueueSender.sendMesage("Test Is DONE!!");
 		callRestWS.createUser(temp);
 		results = tempTableService.findAllTempTable();
+		if (temp.getStatus() == null || temp.getStatus().equals(Status.ACTIVE)) {
+			temp.setStatus(Status.ACTIVE);
+		} else {
+			temp.setStatus(Status.IN_ACTIVE);
+		}
 		temp = new TempTableDTO();
 	}
-
-	public void messageSender() {
+	
+	public void messageSender () {
 		invoiceQueueSender.sendMesage("Test Is DONE!! APPmm");
 	}
-
+	
 	// ------------- Setters & getters -------------
-	public TempTableDTO getTemp() {
+	public TempTableDTO getTemp () {
 		return temp;
 	}
-
-	public void setTemp(TempTableDTO temp) {
+	
+	public void setTemp (TempTableDTO temp) {
 		this.temp = temp;
 	}
-
-	public void setTempTableService(TempTableService tempTableService) {
+	
+	public void setTempTableService (TempTableService tempTableService) {
 		this.tempTableService = tempTableService;
 	}
-
-	public void setInvoiceQueueSender(InvoiceQueueSender invoiceQueueSender) {
+	
+	public void setInvoiceQueueSender (InvoiceQueueSender invoiceQueueSender) {
 		this.invoiceQueueSender = invoiceQueueSender;
 	}
-
-	public void setEjb(TestEJB ejb) {
+	
+	public void setEjb (TestEJB ejb) {
 		this.ejb = ejb;
 	}
-
-	public void setCallRestWS(CallRestWS callRestWS) {
+	
+	public void setCallRestWS (CallRestWS callRestWS) {
 		this.callRestWS = callRestWS;
 	}
-
+	
 }

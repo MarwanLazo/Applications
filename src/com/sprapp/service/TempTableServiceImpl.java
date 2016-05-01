@@ -23,50 +23,50 @@ import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
 
 @Service(value = "tempTableService")
 public class TempTableServiceImpl implements TempTableService {
-
-	private static final long					serialVersionUID	= 1L;
-
+	
+	private static final long					serialVersionUID = 1L;
+	
 	@Resource
 	private TempTableRepositry					repositry;
-
+	
 	@Resource
 	private FactoryMapper<?, ?>					factoryMapper;
-
+	
 	@PersistenceContext
 	private transient EntityManager				em;
-
+	
 	@EJB(mappedName = "java.testEJB#com.sprapp.interceptor.TestEJB")
 	private TestEJB								testEJB;
-
+	
 	private AnnotationsConfigurer				annotationsConfigurer;
 	private BeanValidationAnnotationsConfigurer	beanValidationAnnotationsConfigurer;
 	private Validator							validator;
-
+	
 	@PostConstruct
-	private void init() {
-
+	private void init () {
+		System.out.println("\\zjchzxhckzx");
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TempTableDTO> findAllTempTable() {
+	public List<TempTableDTO> findAllTempTable () {
 		return (List<TempTableDTO>) factoryMapper.mapAsList(repositry.findAllTemps(), TempTableDTO.class);
 	}
-
+	
 	@Override
-	public TempTableDTO createTempTable(TempTableDTO dto) {
+	public TempTableDTO createTempTable (TempTableDTO dto) {
 		return updateTempTable(dto);
 	}
-
+	
 	@Override
-	public TempTableDTO updateTempTable(TempTableDTO dto) {
+	public TempTableDTO updateTempTable (TempTableDTO dto) {
 		validate(dto);
 		TempTableEB tempEB = (TempTableEB) factoryMapper.mapAsObject(dto, TempTableEB.class);
 		return (TempTableDTO) factoryMapper.mapAsObject(repositry.save(tempEB), dto.getClass());
 	}
-
+	
 	@Override
-	public boolean deleteTempTable(TempTableDTO dto) {
+	public boolean deleteTempTable (TempTableDTO dto) {
 		validate(dto);
 		TempTableEB tempEB = (TempTableEB) factoryMapper.mapAsObject(dto, TempTableEB.class);
 		try {
@@ -75,29 +75,29 @@ public class TempTableServiceImpl implements TempTableService {
 		} catch (Exception exception) {
 			return false;
 		}
-
+		
 	}
-
+	
 	@Override
-	public TempTableDTO findTempTableById(String tempName) {
+	public TempTableDTO findTempTableById (String tempName) {
 		TempTableEB tempEB = repositry.findTempTableByTempName(tempName);
 		return (TempTableDTO) factoryMapper.mapAsObject(tempEB, TempTableDTO.class);
 	}
-
-	public TestEJB instanceTestEJB() {
+	
+	public TestEJB instanceTestEJB () {
 		return testEJB;
 	}
-
-	public EntityManager getEm() {
+	
+	public EntityManager getEm () {
 		return em;
 	}
-
-	private void validate(Object object) {
-
+	
+	private void validate (Object object) {
+		
 		annotationsConfigurer = new AnnotationsConfigurer();
 		beanValidationAnnotationsConfigurer = new BeanValidationAnnotationsConfigurer();
 		validator = new Validator(annotationsConfigurer, beanValidationAnnotationsConfigurer);
-
+		
 		List<ConstraintViolation> errors = validator.validate(object);
 		if (errors.size() != 0) {
 			for (ConstraintViolation constraintViolation : errors) {
@@ -105,5 +105,5 @@ public class TempTableServiceImpl implements TempTableService {
 			}
 		}
 	}
-
+	
 }

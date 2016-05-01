@@ -10,7 +10,7 @@ import com.sprapp.dto.TempTableDTO;
 import com.sprapp.entity.TempTableEB;
 
 @Repository(value = "tempTableRepositry")
-public interface TempTableRepositry extends DAO<TempTableEB, String> {
+public interface TempTableRepositry extends MainRepository<TempTableEB, String> {
 	@Query("SELECT t FROM TempTableEB t where t.tempName LIKE %:tempName% ORDER BY t.tempName DESC")
 	// @Query(value = "SELECT * FROM temp_table where TEMP_NAME =
 	// ?#{[tempName]}", nativeQuery = true)
