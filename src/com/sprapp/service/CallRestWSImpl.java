@@ -10,7 +10,7 @@ import com.sprapp.dto.TempTableDTO;
 @Service("callRestWS")
 public class CallRestWSImpl implements CallRestWS {
 
-	private static final String REST_SERVICE_URI = "http://localhost:7001/sprTest/rest";
+	private static final String REST_SERVICE_URI = "http://localhost:7007/sprTest/rest";
 
 	public void createUser(TempTableDTO temp) {
 		System.out.println("Testing create User API----------");

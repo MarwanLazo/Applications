@@ -90,7 +90,7 @@ function deleteConfirmation(name) {
 function consumeWS() {
 	$.ajax({
 		type : 'Get',
-		url : 'http://localhost:7001/sprTest/rest/employees',
+		url : 'http://localhost:7007/sprTest/rest/employees',
 		success : function(data) {
 			var html = '<table border="1" cellspacing="0" cellpadding="10" 	>';
 			html += '<tr><th> Name </th><th> Email </th><th> Email </th></tr>'

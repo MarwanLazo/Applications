@@ -1,9 +1,7 @@
 package com.sprapp.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-public class SpringMVCWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-	@Override
+public class SpringMVCWebAppInitializer/* extends AbstractAnnotationConfigDispatcherServletInitializer*/ {
+	/*@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[] { SpringRootConfiguration.class };
 	}
@@ -16,5 +14,5 @@ public class SpringMVCWebAppInitializer extends AbstractAnnotationConfigDispatch
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
-	}
+	}*/
 }

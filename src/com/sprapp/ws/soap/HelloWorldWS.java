@@ -29,7 +29,7 @@ public class HelloWorldWS extends SpringBeanAutowiringSupport {
 	public List<TempTableEB> getHelloWorld(String tempName) {
 		List<TempTableEB> list = new ArrayList<TempTableEB>();
 		@SuppressWarnings("unchecked")
-		List<Map<String, String>> tempss = template.getForObject("http://localhost:7001/sprTest/rest/employees", List.class);
+		List<Map<String, String>> tempss = template.getForObject("http://localhost:7007/sprTest/rest/employees", List.class);
 		for (Map<String, String> map : tempss) {
 			list.add(new TempTableEB(map.get("tempName"), map.get("tempEmail")));
 		}

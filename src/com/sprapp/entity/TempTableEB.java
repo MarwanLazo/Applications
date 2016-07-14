@@ -23,82 +23,83 @@ import com.sprapp.general.Status;
 // @Cacheable
 // @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 public class TempTableEB extends AbstractEntity<String> {
-	private static final long serialVersionUID = 1L;
-	
+	private static final long	serialVersionUID	= 1L;
+	private static final String	SATUS_USER_TYPE		= "com.sprapp.hibernateconverter.SatusUserType";
+
 	@Id
 	@Column(name = "TEMP_NAME")
 	@Field(analyze = Analyze.YES, index = Index.YES, store = Store.NO)
-	private String			  tempName;
+	private String				tempName;
 	@Field(analyze = Analyze.YES, index = Index.YES, store = Store.NO)
 	@Column(name = "TEMP_EMAIL")
-	private String			  tempEmail;
+	private String				tempEmail;
 	@Field(analyze = Analyze.YES, index = Index.YES, store = Store.NO)
 	@Column(name = "TEMP_REF")
-	private String			  tempRef;
-	
+	private String				tempRef;
+
 	@Column(name = "active")
-	@Type(type = "com.sprapp.hibernateconverter.SatusUserType")
-	private Status			  status;
-	
+	@Type(type = SATUS_USER_TYPE)
+	private Status				status;
+
 	public TempTableEB() {
 		super();
 	}
-	
+
 	public TempTableEB(String tempName, String tempEmail) {
 		this.tempName = tempName;
 		this.tempEmail = tempEmail;
 	}
-	
-	public String getTempName () {
+
+	public String getTempName() {
 		return this.tempName;
 	}
-	
-	public void setTempName (String tempName) {
+
+	public void setTempName(String tempName) {
 		this.tempName = tempName;
 	}
-	
-	public String getTempEmail () {
+
+	public String getTempEmail() {
 		return this.tempEmail;
 	}
-	
-	public void setTempEmail (String tempEmail) {
+
+	public void setTempEmail(String tempEmail) {
 		this.tempEmail = tempEmail;
 	}
-	
+
 	@Override
-	public String toString () {
+	public String toString() {
 		return "[" + tempName + ":" + tempEmail + "]";
 	}
-	
-	public String getTempRef () {
+
+	public String getTempRef() {
 		return tempRef;
 	}
-	
-	public void setTempRef (String tempRef) {
+
+	public void setTempRef(String tempRef) {
 		this.tempRef = tempRef;
 	}
-	
+
 	@Override
-	public String getPK () {
+	public String getPK() {
 		return getTempName();
 	}
-	
+
 	@Override
-	public String getPKAsString () {
+	public String getPKAsString() {
 		return getTempName().toString();
 	}
-	
+
 	@Override
-	public Class<TempTableDTO> getDTOClass () {
+	public Class<TempTableDTO> getDTOClass() {
 		return TempTableDTO.class;
 	}
-	
-	public Status getStatus () {
+
+	public Status getStatus() {
 		return status;
 	}
-	
-	public void setStatus (Status status) {
+
+	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
+
 }
